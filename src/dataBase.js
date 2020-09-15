@@ -9,11 +9,11 @@ const products = {
 }
 
 function saveProduct(product){
-    if(!product){
+    if(!product.id){
         product.id = sequence.id;
-        products[product.id] = product;
-        return product;
     }
+    products[product.id] = product;
+    return product;
 }
 
 function getProduct(id) {
@@ -24,4 +24,10 @@ function getProducts() {
     return Object.values(products);
 }
 
-module.exports = { saveProduct, getProducts, getProduct}
+function deleteProduct(id){
+    const product = products[id];
+    delete products[id];
+    return product;
+}
+
+module.exports = { saveProduct, getProducts, getProduct, deleteProduct }
